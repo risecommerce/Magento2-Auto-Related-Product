@@ -1,0 +1,391 @@
+@import '_slick.less';
+@color_1: transparent;
+@color_2: #444;
+@color_3: inherit;
+@font_family_1: 'luma-icons';
+
+.risecommerce-auto-related-products-slider {
+	padding: 0 40px;
+		.slick-prev {
+		font-size: 0;
+		line-height: 32px;
+		position: absolute;
+		top: 50%;
+		display: block;
+		width: 32px;
+		height: 20px;
+		padding: 0;
+		-webkit-transform: translate(0, calc(-82%));
+		-ms-transform: translate(0, calc(-82%));
+		transform: translate(0, calc(-82%));
+		cursor: pointer;
+		color: @color_1;
+		border: none;
+		outline: none;
+		background: none;
+		left: 0;
+		&:hover {
+			color: @color_1;
+			outline: none;
+			background: none;
+			&:before {
+				opacity: 1;
+			}
+		}
+		&:focus {
+			color: @color_1;
+			outline: none;
+			background: none;
+			&:before {
+				opacity: 1;
+			}
+		}
+		&:before {
+		    content: '\f102';
+			font-family: @font_family_1;
+			display: inherit;
+			background-repeat: no-repeat !important;
+			background: url('../Risecommerce_AutoRelatedProducts/images/left-arrow.png');
+		}
+	}
+	.slick-next {
+		font-size: 0;
+		line-height: 32px;
+		position: absolute;
+		top: 50%;
+		display: block;
+		width: 32px;
+		height: 20px;
+		padding: 0;
+		-webkit-transform: translate(0, calc(-82%));
+		-ms-transform: translate(0, calc(-82%));
+		transform: translate(0, calc(-82%));
+		cursor: pointer;
+		color: @color_1;
+		border: none;
+		outline: none;
+		background: none;
+		right: 0;
+		&:hover {
+			color: @color_1;
+			outline: none;
+			background: none;
+			&:before {
+				opacity: 1;
+			}
+		}
+		&:focus {
+			color: @color_1;
+			outline: none;
+			background: none;
+			&:before {
+				opacity: 1;
+			}
+		}
+		&:before {
+		    content: '\f102';
+			font-family: @font_family_1;
+			display: inherit;
+			background-repeat: no-repeat !important;
+			background: url('../Risecommerce_AutoRelatedProducts/images/right-arrow.png');
+		}
+	}
+
+	.slick-prev.slick-disabled {
+		&:before {
+			opacity: .25;
+		}
+	}
+	.slick-next.slick-disabled {
+		&:before {
+			opacity: .25;
+		}
+	}
+	.slick-slide {
+		padding: 10px;
+	}
+	li {
+		padding: 10px 10px 0 10px;
+	}
+}
+.risecommerce-auto-related-products-block {
+	ol {
+		font-size: 0;
+		li {
+			font-size: 1.4rem;
+		}
+	}
+	.product-item-details {
+		position: relative;
+		z-index: 1;
+	}
+}
+.sidebar {
+	.risecommerce-auto-related-products-block {
+		.product-items {
+			.product-item-info {
+				.product-item-photo {
+					position: initial;
+					width: 100%;
+				}
+			}
+			.product-item-details {
+				margin-left: 0;
+			}
+		}
+		.products-grid {
+			.product-item-info {
+				&:hover {
+					box-shadow: none;
+					border: 1px solid #fff;
+				}
+			}
+			.product-item-info.active {
+				box-shadow: none;
+				border: 1px solid #fff;
+			}
+		}
+	}
+	.risecommerce-auto-related-products-slider {
+		padding: 0;
+	}
+}
+.risecommerce-auto-related-products-popup {
+	.block-content.content {
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		border-radius: 6px;
+		outline: 0px;
+		width: auto;
+		position: fixed;
+		padding: 10px 5px;
+		bottom: 5px;
+		z-index: 9999;
+		background: #ffffff;
+		color: @color_2;
+		cursor: pointer;
+		text-decoration: none;
+		transition: opacity .2s ease-out;
+		.popup-action {
+			float: right;
+			div {
+				display: inline-block;
+				span {
+					border: 0;
+					clip: rect(0, 0, 0, 0);
+					height: 1px;
+					margin: -1px;
+					overflow: hidden;
+					padding: 0;
+					position: absolute;
+					width: 1px;
+				}
+			}
+			.close-popup {
+				&:after {
+					font-size: inherit;
+					position: absolute;
+					right: 25px;
+					top: 5px;
+					bottom: 5px;
+					font-family: @font_family_1;
+				}
+			}
+			.remove-popup {
+				&:after {
+					content: '\e616';
+					font-size: inherit;
+					position: absolute;
+					right: 5px;
+					top: 5px;
+					bottom: 5px;
+					font-family: @font_family_1;
+					color: @color_3;
+					display: block;
+					overflow: hidden;
+				}
+			}
+		}
+		.popup-action[data-opened="false"] {
+			width: 35px;
+			height: 10px;
+			.close-popup {
+				&:after {
+					content: '\e618';
+				}
+			}
+		}
+		.popup-action[data-opened="true"] {
+			.close-popup {
+				&:after {
+					content: '\e607';
+				}
+			}
+		}
+		.products {
+			margin: 0;
+		}
+		.product-item-info {
+			clear: both;
+			width: auto;
+			.product-item-photo {
+				float: left;
+				width: 125px;
+			}
+			.product-item-details {
+				float: right;
+				margin-top: 5px;
+				.product-item-name {
+					font-weight: 800;
+					margin-bottom: 0;
+					a {
+						font-weight: 800;
+						margin-bottom: 0;
+					}
+				}
+				.price-box {
+					margin-top: 0;
+				}
+			}
+		}
+		ol {
+			padding: 0;
+			li {
+				width: 100%;
+				padding: 0;
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+#risecommerce-auto-related-products-left-popup {
+	.block-content.content {
+		left: 5px;
+		box-shadow: -2px 2px #888;
+	}
+}
+#risecommerce-auto-related-products-right-popup {
+	.block-content.content {
+		right: 5px;
+		box-shadow: 2px 2px #888;
+	}
+}
+#risecommerce-auto-related-products-replace-crosssell {
+	width: 75%;
+}
+@media only screen and (min-width:640px) {
+	.checkout-cart-index {
+		#risecommerce-auto-related-products-before-crosssell {
+			.products-grid {
+				.product-item {
+					margin-left: 0;
+				}
+			}
+		}
+		#risecommerce-auto-related-products-replace-crosssell {
+			.products-grid {
+				.product-item {
+					margin-left: 0;
+				}
+			}
+		}
+		#risecommerce-auto-related-products-after-crosssell {
+			.products-grid {
+				.product-item {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}
+@media (max-width:767px) and (min-width:640px) {
+	.risecommerce-auto-related-products-block {
+		.products-grid {
+			.product-item-actions {
+				margin-top: 0;
+			}
+		}
+	}
+}
+@media only screen and (max-width:767px) {
+	.page-with-filter {
+		.columns {
+			.sidebar {
+				width: 100%;
+			}
+		}
+	}
+	.checkout-cart-index {
+		.risecommerce-auto-related-products-block {
+			padding: 0 15px;
+		}
+		.block.crosssell {
+			.risecommerce-auto-related-products-block {
+				padding: 0;
+			}
+		}
+	}
+	#risecommerce-auto-related-products-replace-crosssell {
+		width: auto;
+	}
+}
+@media only screen and (min-width:768px) {
+	#risecommerce-auto-related-products-before-crosssell {
+		width: 75%;
+		float: left;
+		-ms-flex-order: 1;
+		-webkit-order: 1;
+		order: 1;
+		padding: 0 4% 0 0;
+		box-sizing: border-box;
+	}
+	#risecommerce-auto-related-products-after-crosssell {
+		width: 75%;
+		float: left;
+		-ms-flex-order: 1;
+		-webkit-order: 1;
+		order: 1;
+		padding: 0 4% 0 0;
+		box-sizing: border-box;
+	}
+	#risecommerce-auto-related-products-replace-crosssell {
+		width: 75%;
+		float: left;
+		-ms-flex-order: 1;
+		-webkit-order: 1;
+		order: 1;
+		padding: 0 4% 0 0;
+		box-sizing: border-box;
+	}
+	.checkout-cart-index {
+		#risecommerce-auto-related-products-before-crosssell {
+			.products-grid {
+				.product-item {
+					margin-left: 0;
+				}
+			}
+		}
+		#risecommerce-auto-related-products-replace-crosssell {
+			.products-grid {
+				.product-item {
+					margin-left: 0;
+				}
+			}
+		}
+		#risecommerce-auto-related-products-after-crosssell {
+			.products-grid {
+				.product-item {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+	.sidebar {
+		.risecommerce-auto-related-products-block {
+			.products-grid {
+				.product-item {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

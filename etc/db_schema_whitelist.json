@@ -1,0 +1,55 @@
+{
+    "risecommerce_auto_related_products_rule": {
+        "column": {
+            "rule_id": true,
+            "status": true,
+            "rule_name": true,
+            "rule_type": true,
+            "position": true,
+            "priority": true,
+            "start_date": true,
+            "end_date": true,
+            "conditions_serialized": true,
+            "category_ids": true,
+            "block_name": true,
+            "display_mode": true,
+            "display_layout": true,
+            "product_order": true,
+            "no_of_products": true,
+            "display_out_of_stock": true,
+            "additional_info": true,
+            "add_products": true,
+            "not_display_products": true,
+            "actions_serialized": true
+        },
+        "index": {
+            "RISECOMMERCE_AUTO_RELATED_PRODUCTS_RULE_RULE_NAME": true,
+            "RISECOMMERCE_AUTO_RELATED_PRODUCTS_RULE_RULE_TYPE": true,
+            "RISECOMMERCE_AUTO_RELATED_PRODUCTS_RULE_POSITION": true,
+            "RISECOMMERCE_AUTO_RELATED_PRODUCTS_RULE_BLOCK_NAME": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "risecommerce_auto_related_products_rule_store": {
+        "column": {
+            "rule_id": true,
+            "store_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_859DA16B40DFBC9304A8DF341E459C40": true
+        }
+    },
+    "risecommerce_auto_related_products_rule_group": {
+        "column": {
+            "rule_id": true,
+            "customer_group_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_7F86CE40563FA2C100457B5741267FDA": true
+        }
+    }
+}

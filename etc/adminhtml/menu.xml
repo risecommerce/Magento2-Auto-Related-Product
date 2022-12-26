@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+            id="Risecommerce_AutoRelatedProducts::auto_related_products"
+            title="Auto Related Products"
+            translate="title"
+            module="Risecommerce_AutoRelatedProducts"
+            sortOrder="50"
+            action="risecommerce_auto_related_products/rules/"
+            resource="Risecommerce_AutoRelatedProducts::auto_related_products"/>
+    </menu>
+</config>

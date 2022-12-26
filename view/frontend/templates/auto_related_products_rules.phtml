@@ -1,0 +1,229 @@
+<?php /** @var \Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated $block */ ?>
+<?php
+    $image = 'related_products_list';
+    $rule = $block->getRule();
+?>
+
+<?php if ($block->canShowRelatedBlock($rule)): ?>
+
+
+    <?php
+
+        $items = $block->getProductIds($rule);
+    ?>
+    <?php if (count($items)): ?>
+        <div class="block-content content risecommerce-auto-related-products-block">
+            <?php if ($block->isPositionPopup($rule)): ?>
+                <div class="popup-action" data-opened="true">
+                    <div class="close-popup">
+                        <span><?= $block->escapeHtml(__('Close')) ?></span>
+                    </div>
+                    <div class="remove-popup">
+                        <span><?= $block->escapeHtml(__('Remove')) ?></span>
+                    </div>
+                  </div>
+            <?php else: ?>
+                <h2><?= $block->escapeHtml($rule->getBlockName()) ?></h2>
+            <?php endif ?>
+            <div class="products wrapper <?= $rule->getDisplayLayout() == \Risecommerce\AutoRelatedProducts\Ui\Component\Form\DisplayLayouts::GRID && !($block->isPositionPopup($rule)) ? 'grid products-grid' : '' ?>">
+                <ol id="<?= $block->escapeHtml('risecommerce-auto-related-products-slider-'.$rule->getRuleId()) ?>" class="products list items product-items <?= $block->isDisplaySlider($rule) ? 'risecommerce-auto-related-products-slider' : '' ?>">
+                    <?php foreach ($items as $_item):?>
+                        <li class="item product product-item">
+                            <div class="product-item-info">
+                                <?= /* @noEscape */ '<!-- ' . $image . '-->' ?>
+                                <a href="<?= $block->escapeUrl($block->getProductBlock()->getProductUrl($_item)) ?>" class="product photo product-item-photo">
+                                    <?= $block->getProductBlock()->getImage($_item, $image)->toHtml() ?>
+                                </a>
+                                <div class="product details product-item-details">
+                                    <?php if ($block->isPositionPopup($rule)): ?>
+                                        <p><?= $block->escapeHtml($rule->getBlockName()) ?></p>
+                                    <?php endif ?>
+
+                                    <strong class="product name product-item-name">
+                                        <a class="product-item-link" title="<?= $block->escapeHtml($_item->getName()) ?>" href="<?= $block->escapeUrl($block->getProductBlock()->getProductUrl($_item)) ?>">
+                                            <?= $block->escapeHtml($_item->getName()) ?>
+                                        </a>
+                                    </strong>
+                                    <?php if ($block->canShowPrice($rule)): ?>
+                                        <?= /* @noEscape */ $block->getProductBlock()->getProductPrice($_item) ?>
+                                    <?php endif ?>
+                                    <?php if ($block->canShowReview($rule)): ?>
+                                        <?= $block->getProductBlock()->getReviewsSummaryHtml($_item, \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW) ?>
+                                    <?php endif ?>
+                                    <?php if ($block->canShowAddToWishlist($rule) || $block->canShowAddToCart($rule) || $block->canShowAddToCompare($rule)):?>
+                                        <div class="product actions product-item-actions">
+                                            <?php if ($block->canShowAddToCart($rule)):?>
+                                                <div class="actions-primary">
+                                                    <?php if ($_item->getIsInStock()):?>
+                                                        <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)):?>
+                                                            <button class="action tocart primary" data-mage-init='{"redirectUrl": {"url": "<?= $block->escapeUrl($block->getProductBlock()->getAddToCartUrl($_item)) ?>"}}' type="button" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>">
+                                                                <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                                            </button>
+                                                        <?php else:?>
+                                                            <?php
+                                                            $formKey = $block->getFormKey();
+                                                            $formUrl = $block->getProductBlock()->getAddToCartUrl($_item);
+                                                            $urlHelper = $this->helper(\Magento\Framework\Url\Helper\Data::class);
+                                                            $urlEncoded = $urlHelper->getEncodedUrl($formUrl);
+                                                            $returnURL = $block->getCartReturnUrl($rule);
+
+                                                            ?>
+                                                            <button
+                                                                type="button"
+                                                                title="Add to Cart"
+                                                                data-product-id="<?= $_item->getEntityId(); ?>"
+                                                                data-url-encoded="<?= $urlEncoded; ?>"
+                                                                data-form-key="<?= $formKey; ?>"
+                                                                data-form-url="<?= $block->escapeUrl($formUrl); ?>"
+                                                                data-form-return-url="<?= $block->escapeUrl($returnURL); ?>"
+                                                                class="action tocart primary autoRelatedProductsAddToCart">
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        <?php endif; ?>
+                                                    <?php else:?>
+                                                        <?php if ($_item->getIsInStock()):?>
+                                                            <div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+                                                        <?php else:?>
+                                                            <div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+                                                        <?php endif; ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if ($block->canShowAddToWishlist($rule) || $block->canShowAddToCompare($rule)): ?>
+                                                <div class="secondary-addto-links actions-secondary" data-role="add-to-links">
+                                                    <?php if ($block->canShowAddToWishlist($rule) && $block->isWishListAllowed()): ?>
+                                                        <a href="#"
+                                                           class="action towishlist"
+                                                           data-post='<?= /* @noEscape */ $block->getWishlistParams($_item) ?>'
+                                                           data-action="add-to-wishlist">
+                                                           <span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
+                                                        </a>
+                                                        <script type="text/x-magento-init">
+                                                            {
+                                                                "body": {
+                                                                    "addToWishlist": <?= /* @noEscape */ $block->getWishlistOptionsJson($_item) ?>
+                                                                }
+                                                            }
+                                                        </script>
+                                                    <?php endif ?>
+                                                    <?php if ($block->canShowAddToCompare($rule)):?>
+                                                        <a href="#"
+                                                           class="action tocompare"
+                                                           title="<?= $block->escapeHtml(__('Add to Compare')) ?>"
+                                                           aria-label="<?= $block->escapeHtml(__('Add to Compare')) ?>"
+                                                           data-post='<?= /* @noEscape */ $block->getComparePostDataParams($_item, $rule) ?>'
+                                                           role="button">
+                                                            <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
+                                                        </a>
+                                                    <?php endif ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach ?>
+                </ol>
+            </div>
+        </div>
+        <?php endif ?>
+<?php endif ?>
+<?php if ($block->isPositionPopup($rule)): ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "autorelatedPopup": {}
+            }
+        }
+    </script>
+<?php else: ?>
+    <?php if ($block->isDisplaySlider($rule)): ?>
+        <script>
+        require([
+            'jquery',
+            'slick'
+        ], function ($) {
+            $(document).ready(function () {
+                $('<?= $block->escapeHtml('#risecommerce-auto-related-products-slider-'.$rule->getRuleId()) ?>').slick({
+                        infinite: false,
+                        slidesToShow: <?= $block->isPositionSidebar($rule) ? 1 : 6 ?>,
+                        slidesToScroll: 1,
+                        dots: false,
+                        autoplay: false,
+                        arrows: <?= $block->isPositionSidebar($rule) ? "false" : "true" ?>,
+                        responsive: [
+                        {
+                            breakpoint: 1440,
+                            settings: {
+                                slidesToShow: <?= $block->isPositionSidebar($rule) ? 1 : 5 ?>,
+                                slidesToScroll: 1,
+                            }
+                        },
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: <?= $block->isPositionSidebar($rule) ? 1 : 4 ?>,
+                                slidesToScroll: 1,
+                            }
+                        },
+                        {
+                            breakpoint: 767,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 1,
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1,
+                                variableWidth: false,
+                            }
+                        },
+                    ]
+                });
+            });
+        });
+
+    </script>
+    <?php endif ?>
+<?php endif ?>
+<script>
+    require(
+        [
+            'jquery',
+            'uiComponent'
+        ],
+        function(
+            $,
+            Component
+        ) {
+
+            $(document).on("click",".autoRelatedProductsAddToCart",function(){
+                var element = this;
+                $(element).html('<span>Processing...</span>');
+
+                $.ajax({
+                    url: $(element).attr('data-form-url'),
+                    data: {product: $(element).attr('data-product-id'), uenc: $(element).attr('data-url-encoded'), form_key: $(element).attr('data-form-key')},
+                    dataType: "json",
+                    type: 'post',
+                    success: function (response) {
+                        $(element).html('<span>Add to Cart</span>');
+
+                        if($(element).attr('data-form-return-url') != 'undefined' && $(element).attr('data-form-return-url') != ''){
+                            setTimeout(function(){
+                                window.location.href = $(element).attr('data-form-return-url');
+                            }, 3000);
+                        }
+                    }
+                });
+                return false;
+            });
+
+        }
+    );
+</script>

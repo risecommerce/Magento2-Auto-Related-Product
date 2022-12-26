@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="risecommerce_auto_related_products_rule" resource="default" comment="Risecommerce Auto Related Products Rule Table">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Rule ID"/>
+        <column xsi:type="tinyint" name="status" padding="10" nullable="false" default="1" comment="Status"/>
+        <column xsi:type="varchar" name="rule_name" nullable="false" comment="Rule Name"/>
+        <column xsi:type="varchar" name="rule_type" nullable="false" comment="Rule Type"/>
+        <column xsi:type="varchar" name="position" nullable="false" comment="Position"/>
+        <column xsi:type="int" name="priority" padding="11" nullable="true" default="1" comment="Priority"/>
+        <column xsi:type="date" name="start_date" nullable="true" comment="Start Date"/>
+        <column xsi:type="date" name="end_date" nullable="true" comment="End Date"/>
+        <column xsi:type="text" name="conditions_serialized" nullable="true" comment="Conditions Serialized"/>
+        <column xsi:type="varchar" name="category_ids" nullable="true" comment="Category Ids"/>
+        <column xsi:type="varchar" name="block_name" nullable="false" comment="Block Name"/>
+        <column xsi:type="int" name="display_mode" padding="11" nullable="false" comment="Display Mode"/>
+        <column xsi:type="int" name="display_layout" padding="11" nullable="false" comment="Display Layout"/>
+        <column xsi:type="int" name="product_order" padding="11" nullable="false" comment="Product Order"/>
+        <column xsi:type="int" name="no_of_products" padding="11" nullable="false" comment="No Of Products"/>
+        <column xsi:type="tinyint" name="display_out_of_stock" padding="10" nullable="false" default="0" comment="Display Out Of Stock"/>
+        <column xsi:type="varchar" name="additional_info" nullable="true" comment="Additional Information"/>
+        <column xsi:type="varchar" name="add_products" nullable="true" comment="Add Products"/>
+        <column xsi:type="varchar" name="not_display_products" nullable="true" comment="Not Display Products"/>
+        <column xsi:type="text" name="actions_serialized" nullable="true" comment="Actions Serialized"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+        </constraint>
+        
+        <index referenceId="RISECOMMERCE_AUTO_RELATED_PRODUCTS_RULE_NAME" indexType="btree">
+            <column name="rule_name"/>
+        </index>
+        <index referenceId="RISECOMMERCE_AUTO_RELATED_PRODUCTS_RULE_TYPE" indexType="btree">
+            <column name="rule_type"/>
+        </index>
+        <index referenceId="RISECOMMERCE_AUTO_RELATED_PRODUCTS_RULE_POSITION" indexType="btree">
+            <column name="position"/>
+        </index>
+        <index referenceId="RISECOMMERCE_AUTO_RELATED_PRODUCTS_RULE_BLOCK_NAME" indexType="btree">
+            <column name="block_name"/>
+        </index>
+    </table>
+
+    <table name="risecommerce_auto_related_products_rule_store" resource="default" comment="Risecommerce Auto Related Products Rule Store Table">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Rule ID"/>
+        <column xsi:type="int" name="store_id" padding="10" nullable="false" identity="false" unsigned="true" comment="Store ID"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="store_id"/>
+        </constraint>
+        
+        <constraint xsi:type="foreign" referenceId="RISECOMMERCE_AUTO_RELATED_PRODUCTS_RULE_STORE_RULE_ID" table="risecommerce_auto_related_products_rule_store" column="rule_id" referenceTable="risecommerce_auto_related_products_rule" referenceColumn="rule_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="risecommerce_auto_related_products_rule_group" resource="default" comment="Risecommerce Auto Related Products Rule Group Table">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Rule ID"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" nullable="false" identity="false" unsigned="true" comment="Customer Group ID"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="customer_group_id"/>
+        </constraint>
+        
+        <constraint xsi:type="foreign" referenceId="RISECOMMERCE_AUTO_RELATED_PRODUCTS_RULE_GROUP_RULE_ID" table="risecommerce_auto_related_products_rule_group" column="rule_id" referenceTable="risecommerce_auto_related_products_rule" referenceColumn="rule_id" onDelete="CASCADE"/>
+    </table>
+</schema>

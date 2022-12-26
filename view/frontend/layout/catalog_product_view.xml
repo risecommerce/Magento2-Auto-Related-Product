@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	<referenceContainer name="content">
+    		<block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.ajax" template="Risecommerce_AutoRelatedProducts::auto_related_products_ajax.phtml">
+				<arguments>
+	    				<argument xsi:type="string" name="rule_type">product</argument>
+	    		</arguments>
+			</block>
+    		<container name="risecommerce.auto.related.products.after.content" htmlTag="div" htmlId="risecommerce-auto-related-products-after-content" after="-">
+	    		<block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.after">
+	    			<arguments>
+	    				<argument xsi:type="const" name="position">Risecommerce\AutoRelatedProducts\Ui\Component\Form\Position::AFTER_CONTENT</argument>
+	    				<argument xsi:type="const" name="mode">Risecommerce\AutoRelatedProducts\Ui\Component\Form\DisplayModes::BLOCK</argument>
+	    			</arguments>
+	    		</block>
+    		</container>
+    		<container name="risecommerce.auto.related.products.before.content" htmlTag="div" htmlId="risecommerce-auto-related-products-before-content" before="-">
+	    		<block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.before">
+	    			<arguments>
+	    				<argument xsi:type="const" name="position">Risecommerce\AutoRelatedProducts\Ui\Component\Form\Position::BEFORE_CONTENT</argument>
+	    				<argument xsi:type="const" name="mode">Risecommerce\AutoRelatedProducts\Ui\Component\Form\DisplayModes::BLOCK</argument>
+	    			</arguments>
+	    		</block>
+    		</container>
+    		<container name="risecommerce.auto.related.products.left.popup.container" htmlTag="div" htmlId="risecommerce-auto-related-products-left-popup" htmlClass="risecommerce-auto-related-products-popup" before="-">
+	    		<block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.left.popup">
+	    			<arguments>
+	    				<argument xsi:type="const" name="position">Risecommerce\AutoRelatedProducts\Ui\Component\Form\Position::LEFT_POPUP</argument>
+	    				<argument xsi:type="const" name="mode">Risecommerce\AutoRelatedProducts\Ui\Component\Form\DisplayModes::BLOCK</argument>
+	    			</arguments>
+	    		</block>
+    		</container>
+    		<container name="risecommerce.auto.related.products.right.popup.container" htmlTag="div" htmlId="risecommerce-auto-related-products-right-popup" htmlClass="risecommerce-auto-related-products-popup" before="-">
+	    		<block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.right.popup.block">
+	    			<arguments>
+	    				<argument xsi:type="const" name="position">Risecommerce\AutoRelatedProducts\Ui\Component\Form\Position::RIGHT_POPUP</argument>
+	    				<argument xsi:type="const" name="mode">Risecommerce\AutoRelatedProducts\Ui\Component\Form\DisplayModes::BLOCK</argument>
+	    			</arguments>
+	    		</block>
+    		</container>
+    	</referenceContainer>
+    	<referenceContainer name="content.aside">
+    		<referenceBlock name="catalog.product.related" class="Risecommerce\AutoRelatedProducts\Block\ProductList\Related" >
+	    		<container name="risecommerce.auto.related.products.replace.related.container" htmlTag="div" htmlId="risecommerce-auto-related-products-replace-related">
+	    			<block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.replace.related">
+	    				<arguments>
+		    				<argument xsi:type="const" name="position">Risecommerce\AutoRelatedProducts\Ui\Component\Form\Position::REPLACE_RELATED</argument>
+		    				<argument xsi:type="const" name="mode">Risecommerce\AutoRelatedProducts\Ui\Component\Form\DisplayModes::BLOCK</argument>
+		    			</arguments>
+	    			</block>
+    			</container>
+	    	</referenceBlock>
+    		<container name="risecommerce.auto.related.products.before.related.container" htmlTag="div" htmlId="risecommerce-auto-related-products-before-related" before="catalog.product.related">
+	    		<block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.before.related">
+	    			<arguments>
+	    				<argument xsi:type="const" name="position">Risecommerce\AutoRelatedProducts\Ui\Component\Form\Position::BEFORE_RELATED</argument>
+	    				<argument xsi:type="const" name="mode">Risecommerce\AutoRelatedProducts\Ui\Component\Form\DisplayModes::BLOCK</argument>
+	    			</arguments>
+	    		</block>
+    		</container>
+    		<container name="risecommerce.auto.related.products.after.related.container" htmlTag="div" htmlId="risecommerce-auto-related-products-after-related" after="catalog.product.related">
+	    		<block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.after.related">
+	    			<arguments>
+	    				<argument xsi:type="const" name="position">Risecommerce\AutoRelatedProducts\Ui\Component\Form\Position::AFTER_RELATED</argument>
+	    				<argument xsi:type="const" name="mode">Risecommerce\AutoRelatedProducts\Ui\Component\Form\DisplayModes::BLOCK</argument>
+	    			</arguments>
+	    		</block>
+    		</container>
+    		<referenceBlock name="product.info.upsell" class="Risecommerce\AutoRelatedProducts\Block\ProductList\Upsell" >
+	    		<container name="risecommerce.auto.related.products.replace.upsell.container" htmlTag="div" htmlId="risecommerce-auto-related-products-replace-upsell">
+	    			<block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.replace.upsell">
+	    				<arguments>
+		    				<argument xsi:type="const" name="position">Risecommerce\AutoRelatedProducts\Ui\Component\Form\Position::REPLACE_UPSELL</argument>
+		    				<argument xsi:type="const" name="mode">Risecommerce\AutoRelatedProducts\Ui\Component\Form\DisplayModes::BLOCK</argument>
+		    			</arguments>
+	    			</block>
+    			</container>
+	    	</referenceBlock>
+    		<container name="risecommerce.auto.related.products.before.upsell.container" htmlTag="div" htmlId="risecommerce-auto-related-products-before-upsell" before="product.info.upsell">
+	    		<block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.before.upsell">
+	    			<arguments>
+	    				<argument xsi:type="const" name="position">Risecommerce\AutoRelatedProducts\Ui\Component\Form\Position::BEFORE_UPSELL</argument>
+	    				<argument xsi:type="const" name="mode">Risecommerce\AutoRelatedProducts\Ui\Component\Form\DisplayModes::BLOCK</argument>
+	    			</arguments>
+	    		</block>
+    		</container>
+    		<container name="risecommerce.auto.related.products.after.upsell.container" htmlTag="div" htmlId="risecommerce-auto-related-products-after-upsell" after="product.info.upsell">
+	    		<block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.after.upsell">
+	    			<arguments>
+	    				<argument xsi:type="const" name="position">Risecommerce\AutoRelatedProducts\Ui\Component\Form\Position::AFTER_UPSELL</argument>
+	    				<argument xsi:type="const" name="mode">Risecommerce\AutoRelatedProducts\Ui\Component\Form\DisplayModes::BLOCK</argument>
+	    			</arguments>
+	    		</block>
+    		</container>
+    	</referenceContainer>
+    </body>
+</page>

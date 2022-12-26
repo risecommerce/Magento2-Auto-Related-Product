@@ -1,0 +1,24 @@
+<?php
+/** @var $block \Risecommerce\AutoRelatedProducts\Block\Adminhtml\Auto\Related\Products\Rule\Edit\Tab\Actions */
+$ruleId = $block->getRuleId() ? $block->getRuleId() : null;
+if ($ruleId):
+    ?>
+<fieldset class="fieldset admin__fieldset" id="risecommerce_auto_related_products_entity_snippet_code_fieldset">
+    <legend class="admin__legend legend">
+        <span><?= $block->escapeHtml(__('Snippet Code')) ?></span>
+    </legend><br/>
+    <div class="admin__field field field-snippet_code_insert">
+        <div>
+            <div class="risecommerce-auto-related-products-control-value">
+                <p>Use the following code to show the auto related products block in any place you want:</p>
+                <strong>CMS Page/Static Block</strong>
+                <pre class="risecommerce-auto-related-products-snippet-code"><code>&#123;&#123;block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" ruleId="<?= /* @noEscape */ $ruleId ?>" template="Risecommerce_AutoRelatedProducts::auto_related_products_ajax.phtml"&#125;&#125;</code></pre>
+                <strong>Template .phtml file</strong>
+                <pre class="risecommerce-auto-related-products-snippet-code"><code>&lt;?= $block-&gt;getLayout()-&gt;createBlock("Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated")-&gt;setRuleId("<?= /* @noEscape */ $ruleId ?>")->setTemplate("Risecommerce_AutoRelatedProducts::auto_related_products_ajax.phtml")-&gt;toHtml();?&gt;</code></pre>
+                <strong>Layout File</strong>
+                <pre class="risecommerce-auto-related-products-snippet-code"><code>&lt;block class="Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated" name="risecommerce.auto.related.products.block" template="Risecommerce_AutoRelatedProducts::auto_related_products_ajax.phtml"&gt;<br/>&nbsp;&nbsp;&lt;arguments&gt; <br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;argument name="rule_id" xsi:type="string"><?= /* @noEscape */ $ruleId ?>&lt;/argument&gt;<br/>&nbsp;&nbsp;&lt;/arguments&gt;<br/>&lt;/block&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<?php endif; ?>

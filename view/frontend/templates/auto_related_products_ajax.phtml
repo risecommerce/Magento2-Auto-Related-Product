@@ -1,0 +1,18 @@
+<?php /** @var \Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated $block */ ?>
+<?php
+if ($block->getData('ruleId')) {
+    ?><div id="risecommerce-auto-related-products-custom-<?=$block->getData('ruleId');?>"></div><?php
+}
+?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "autorelatedAjaxLoad": {
+            "baseUrl": "<?= $block->escapeHtml($block->getBaseUrl()) ?>",
+            "type": "<?= $block->escapeHtml($block->getData('rule_type')) ?>",
+            "id": "<?= $block->escapeHtml($block->getItemId()) ?>",
+            "rule_id": "<?= $block->escapeHtml($block->getData('ruleId')) ?>"
+        }
+    }
+}
+</script>

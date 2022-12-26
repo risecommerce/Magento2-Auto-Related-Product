@@ -1,0 +1,12 @@
+<?php /** @var \Risecommerce\AutoRelatedProducts\Block\ProductList\AutoRelated $block */ ?>
+<?php
+    $rulesCollection = $block->getRulesCollection();
+?>
+    <?php if (count($rulesCollection)): ?>
+        <?php foreach ($rulesCollection as $rule): ?>
+            <?= $block->setData('rule', $rule)
+                    ->setTemplate('Risecommerce_AutoRelatedProducts::auto_related_products_rules.phtml')
+                    ->toHtml();
+            ?>
+        <?php endforeach ?>
+<?php endif ?>
