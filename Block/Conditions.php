@@ -16,6 +16,9 @@ use Magento\Framework\Data\Form\Element\AbstractElement;
 
 class Conditions implements \Magento\Framework\Data\Form\Element\Renderer\RendererInterface
 {
+    protected $backendUrlManager;
+    protected $request;
+
     /**
      * Conditions constructor.
      *

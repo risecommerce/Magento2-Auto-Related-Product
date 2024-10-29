@@ -19,6 +19,9 @@ class Options implements \Magento\Framework\Data\OptionSourceInterface
      */
     protected $options;
 
+    protected $collectionFactory;
+    protected $product;
+
     /**
      * Options constructor.
      *

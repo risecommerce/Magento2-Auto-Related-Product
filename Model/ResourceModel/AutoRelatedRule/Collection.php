@@ -25,6 +25,9 @@ class Collection extends \Magento\Rule\Model\ResourceModel\Rule\Collection\Abstr
      */
     protected $_idFieldName = 'rule_id';
 
+    protected $serializer;
+    protected $_associatedEntitiesMap;
+
     /**
      * Collection constructor.
      *
