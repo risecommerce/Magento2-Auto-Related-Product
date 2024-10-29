@@ -12,6 +12,8 @@
  */
 namespace Risecommerce\AutoRelatedProducts\Controller\Adminhtml\Rules;
 
+use Magento\Framework\Filter\FilterInput;
+
 class Save extends \Risecommerce\AutoRelatedProducts\Controller\Adminhtml\Rules\Rule
 {
     /**
@@ -33,7 +35,7 @@ class Save extends \Risecommerce\AutoRelatedProducts\Controller\Adminhtml\Rules\
             if ($this->getRequest()->getParam('end_date')) {
                 $filterValues['end_date'] = $this->dateFilter;
             }
-            $inputFilter = new \Zend_Filter_Input(
+            $inputFilter = new FilterInput(
                 $filterValues,
                 [],
                 $data

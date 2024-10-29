@@ -19,6 +19,8 @@ class AutoRelatedRule extends \Magento\Rule\Model\ResourceModel\AbstractResource
      */
     protected $entityManager;
 
+    protected $_associatedEntitiesMap;
+
     /**
      * AutoRelatedRule constructor.
      *
